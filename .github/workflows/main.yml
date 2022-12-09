@@ -23,10 +23,37 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push
+        name: Build and push Vault
         uses: docker/build-push-action@v3
         with:
           context: .
           file: ./vault/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USER }}/vault:latest
+          
+      -
+        name: Build and push Sonarqube
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./sonarqube/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USER }}/sonarqube:latest
+          
+      -
+        name: Build and push Artifactory
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./artifactory/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USER }}/artifactory:latest
+          
+      -
+        name: Build and push Jenkins
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./jenkins/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USER }}/jenkins:latest
