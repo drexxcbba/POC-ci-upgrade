@@ -4,9 +4,10 @@ jobs:
   snyk:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - uses: hadolint/hadolint-action@v2.1.0
       with:
-       dockerfile: ./vault/Dockerfile
+       dockerfile: vault/Dockerfile
        failure-threshold: error
        
     - uses: actions/checkout@v2
