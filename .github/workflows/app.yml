@@ -1,4 +1,4 @@
-name: Snyk Container
+name: Pipeline upgrade
 on: push
 jobs:
   snyk:
@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: hadolint/hadolint-action@v2.1.0
       with:
-       dockerfile: vault/Dockerfile
+       dockerfile: ./vault/Dockerfile
        failure-threshold: error
        
     - uses: actions/checkout@v2
