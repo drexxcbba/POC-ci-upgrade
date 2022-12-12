@@ -4,7 +4,6 @@ jobs:
   snyk:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2 
     - uses: hadolint/hadolint-action@v2.1.0
       with:
        dockerfile: vault/Dockerfile
@@ -22,3 +21,13 @@ jobs:
       with:
         image: vault-test
         args: --file=vault/Dockerfile
+        
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'vault-test'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH
