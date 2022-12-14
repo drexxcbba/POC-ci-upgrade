@@ -1,1 +1,1 @@
-FROM vault:1.11.6
+FROM vault:v1.12.6
