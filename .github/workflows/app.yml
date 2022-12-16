@@ -4,13 +4,13 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: hadolint/hadolint-action@v2.1.0
       with:
        dockerfile: vault/Dockerfile
        failure-threshold: error
        
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Build a Docker image
       run: docker build -t ${{ secrets.DOCKERHUB_USER }}/vault:latest vault/.
       
